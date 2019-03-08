@@ -1,3 +1,5 @@
+(Still working on translating comment lines to English)
+
 Little project on linked lists. How to : 
 1- Create a linked list and list its elements.
 2- Verify if it is created correctly, print its length.
