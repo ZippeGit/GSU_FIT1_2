@@ -1,3 +1,5 @@
+(Still working on translating comment lines to English)
+
 Project on making a program that adds effects to pgm files, both P2 and P5.
 The effects are:
 1- Noise
