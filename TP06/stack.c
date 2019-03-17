@@ -102,7 +102,7 @@ double stack_pop(struct stackNode **top) {
         free(temp);
     }
 
-   // else printf("This stack is empty. YEET! \n");
+    else printf("This stack empty, YEET! \n");
 
     return retval;
 }
@@ -132,7 +132,7 @@ void stack_multi_pop(struct stackNode **top, int number) {
     */
     int i = 0;
     for (i = 0; i < number; i++) {
-        printf("%.0lf ", stack_pop(top));
+        printf("%.2lf ", stack_pop(top));
     }
     printf("\n");
 }
@@ -149,7 +149,7 @@ void stack_print(struct stackNode *top) {
      */
     
     if(is_empty(top)) {
-        printf("This stack is empty. YEET!\n");
+        printf("This stack empty, YEET!\n");
         exit(0);
     } 
 
@@ -162,7 +162,10 @@ void stack_print(struct stackNode *top) {
 
     printf("Here is your list: ");
     for(; top != NULL; top = top->next) {
-        printf("%.0lf ", top->data);
+        printf("%.2lf -> ", top->data);
+        if (top->next == NULL) {
+            printf("NULL");
+        }
     }
     printf("\n");
 }

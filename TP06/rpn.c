@@ -27,14 +27,13 @@ double compute_operation(double op1, double op2, char operation) {
      * islemlerini uygulayip geri donduren fonksiyonu yazin. */
     double result = 0;
 
-
     switch (operation) {
         case '+':
             result = op1 + op2;
             break;
 
         case '-':
-            result = op1 - op2;
+            result = op2 - op1;
             break;
 
         case '*':
@@ -42,7 +41,7 @@ double compute_operation(double op1, double op2, char operation) {
             break;
 
         case '/':
-            result = op1 / op2;
+            result = op2 / op1;
             break;
         
         default:
@@ -90,10 +89,11 @@ double evaluate_RPN(char *expr, struct stackNode **top) {
         }
 
         else {
-            stack_push(top, expr[i]);
+            stack_push(top, expr[i] - '0');
         }
 
-      //  *top = (*top)->next;
+        stack_print(*top);
+
         i++;
     }
 
@@ -104,21 +104,21 @@ double evaluate_RPN(char *expr, struct stackNode **top) {
 	// yigit bos degilse kontrol edin,
 	// bu durumda compute_operation fonksiyonu hatali olabilir.
 	// bununla ilgili mesaj ekrana yazilsin.
-    if(is_empty(*top)) {
+    if(!is_empty(*top)) {
         printf("There are still elements in the stack...\n");
     }
 
     return retval;
-
 }
 
 
 void rpn_test_evaluate_RPN(){
 	/* Test */
     struct stackNode *stack = NULL;
-    printf("check\n");
+    printf("Testing equation 13+2-\n");
 	assert(evaluate_RPN("13+2-", &stack) == 2.0);
-    printf("check\n");
+    printf("\nTesting equation 62+5*84/-\n");
 	assert(evaluate_RPN("62+5*84/-", &stack) == 38.0);
-	printf("Testler basarili.\n");
+    stack_free(&stack);
+	printf("\nThe tests are successful.\n");
 }
