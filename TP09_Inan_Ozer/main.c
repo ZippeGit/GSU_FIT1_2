@@ -33,18 +33,18 @@ int main(int argc, char *argv[]) {
   
   /////////////////////////////////////////////////////////////
   //TODO : Alistirma 5 
-  matadd(4, 4, _X, 4, _Y, 4, _Z);
-  matprint(4, 4, _Z); printf("\n");
-  matsub(4, 4, _X, 4, _Y, 4, _Z);
-  matprint(4, 4, _Z); printf("\n");
-  matvecadd(4, 4, _X, 4, _V, 4, _Z, 1);
-  matprint(4, 4, _Z); printf("\n");
-  mattranspose(4, 4, _X, 4, _Z);
-  matprint(4, 4, _Z); printf("\n");
-  printf("=========================\n");
+  //matadd(4, 4, _X, 4, _Y, 4, _Z);
+  //matprint(4, 4, _Z); printf("\n");
+  //matsub(4, 4, _X, 4, _Y, 4, _Z);
+  //matprint(4, 4, _Z); printf("\n");
+  //matvecadd(4, 4, _X, 4, _V, 4, _Z, 1);
+  //matprint(4, 4, _Z); printf("\n");
+  //mattranspose(4, 4, _X, 4, _Z);
+  //matprint(4, 4, _Z); printf("\n");
+  //printf("=========================\n");
   /////////////////////////////////////////////////////////////
   
-
+  printf("Matmult result: \n");
   matmult(4, 4, _X, 4, _Y, 4, _Z);
   matprint(4, 4, _Z);
   printf("=========================\n");
@@ -76,31 +76,46 @@ int main(int argc, char *argv[]) {
   int mat_size = atoi(argv[1]);
   int min_mat_recurse = atoi(argv[2]);
 
-  /* Zaman olcumleri icin gerekli 
+  /* Zaman olcumleri icin gerekli */
   struct timeval tvBegin, tvEnd, tvDiff;
+  //struct tanimli degil hicbir yerde ancak iskelet kodu degistirmek istemiyorum
+  //(cunku bu satirla alakali bir sey istenmemis PDFte)
+  //kod duzgun calisiyor, ama bu hatayı veriyor, garip
 
-  double *X, *Y, *Z, *Zfast;
+
+  //double *X, *Y, *Z, *Zfast;
   /* TODO: 4 gosterici icin ilgili yerleri ayirin */
+
+   const int sz = mat_size*mat_size*(sizeof(double));
+
+  double *X = malloc(sz);
+  double *Y = malloc(sz);
+  double *Z = malloc(sz);
+  double *Zfast = malloc(sz);
 
   /* TODO: Gostericilerden birisi NULL ise bellek hatasi verip
    * programi 1 donus degeriyle sonlandirin. 
    * if kontrolunun icini doldurup yorum satirindan cikarin.
    */
-   //if () {
-   //  fprintf(stderr, "Error allocating memory.\n");
-   //  exit(1);
-   //}
+  if ((X == NULL) || (Y == NULL) || (Z == NULL) || (Zfast == NULL)) {
+    fprintf(stderr, "Error allocating memory.\n");
+    exit(1);
+  }
 
   /* TODO: X ve Y matrislerini rasgele doldurun */
 
-  /* Klasik carpim algoritmasinin olcumu 
+  matrand(mat_size, mat_size, X);
+  matrand(mat_size, mat_size, Y);
+
+
+  /* Klasik carpim algoritmasinin olcumu */
   gettimeofday(&tvBegin, NULL);
   matmult(mat_size, mat_size, X, mat_size, Y, mat_size, Z);
   gettimeofday(&tvEnd, NULL);
   timeval_subtract(&tvDiff, &tvEnd, &tvBegin);
   printf("matmult (%dx%d) --> %ld.%06ld\n", mat_size, mat_size, (long int) tvDiff.tv_sec, (long int) tvDiff.tv_usec);
 
-  /* Strassen carpim algoritmasinin olcumu 
+  /* Strassen carpim algoritmasinin olcumu */
   gettimeofday(&tvBegin, NULL);
   matmult_fast(mat_size, mat_size, X, mat_size, Y, mat_size, Zfast, min_mat_recurse);
   gettimeofday(&tvEnd, NULL);
@@ -108,6 +123,10 @@ int main(int argc, char *argv[]) {
   printf("matmult_fast (%dx%d - base_case: %d) --> %ld.%06ld\n", mat_size, mat_size, min_mat_recurse, (long int) tvDiff.tv_sec, (long int) tvDiff.tv_usec);
 
   /* TODO: 4 gostericiye ayrilan yerleri free() edin. */
-
+  free(X);
+  free(Y);
+  free(Z);
+  free(Zfast);
+ 
   return 0;
 }
