@@ -46,10 +46,20 @@ int find_maxsum_elements_unsorted(int* arritem,int size){
 	*/
 
 	//Sorting kullanmadan:	
-	int d;
+	int d, temp = 0;
 	int max1 = arritem[0];
 	int max2 = arritem[1];
-	for (d = 0; d < size; d += 2) {
+	for (d = 2; d < size; d++) {
+        if (arritem[d] > max1) {
+			temp = max1;
+			max1 = arritem[d];
+			if (temp > max2) {
+				max2 = temp;
+			}
+		}
+		else if (arritem[d] > max2) {
+			max2 = arritem[d];
+		}
 	}
 	maxsum = max1 + max2;
 	return maxsum;

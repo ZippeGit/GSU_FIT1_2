@@ -46,7 +46,12 @@ int main(int argc,char* argv[]){
 	printf("\n");
 	insertion_sort(arrRand,SIZE);
 	for(i = 0; i<SIZE; i++) {
-		printf("%d - ", arrRand[i]);
+		if (i == SIZE-1) {
+			printf("%d", arrRand[i]);
+		}
+		else {
+			printf("%d - ", arrRand[i]);
+		}
 	}
 	printf("\n");
 	//assert(is_array_sorted(arrRand,SIZE));
@@ -59,7 +64,12 @@ int main(int argc,char* argv[]){
 	printf("\n");
 	selection_sort(arrRand,SIZE);
 	for(i = 0; i<SIZE; i++) {
-		printf("%d - ", arrRand[i]);
+		if (i == SIZE-1) {
+			printf("%d", arrRand[i]);
+		}
+		else {
+			printf("%d - ", arrRand[i]);
+		}
 	}
 	printf("\n");
 	//assert(is_array_sorted(arrRand,SIZE));
@@ -72,7 +82,12 @@ int main(int argc,char* argv[]){
 	printf("\n");
 	bubble_sort(arrRand,SIZE);
 	for(i = 0; i<SIZE; i++) {
-		printf("%d - ", arrRand[i]);
+		if (i == SIZE-1) {
+			printf("%d", arrRand[i]);
+		}
+		else {
+			printf("%d - ", arrRand[i]);
+		}
 	}
 	printf("\n");
 	//assert(is_array_sorted(arrEx1,SIZE));
@@ -110,15 +125,36 @@ int main(int argc,char* argv[]){
 	// Sirali dizi ile maksimum testi
 	//assert(find_maxsum_elements_sorted(arrEx1,SIZE)==146);
 	printf("Sorted search for max x+y : %d\n", find_maxsum_elements_sorted(arrEx1, SIZE));
+	
 	// Sirasiz dizi ile maksimum testi
 	//assert(find_maxsum_elements_unsorted(arrEx,SIZE)==146);
-	printf("Unsorted search for max x+y : %d\n", find_maxsum_elements_unsorted(arrEx, SIZE));
-
+	printf("--------------------------\n");
+	for(i = 0; i<SIZE; i++) {
+		if (i == SIZE-1) {
+			printf("%d", arrRand[i]);
+		}
+		else {
+			printf("%d - ", arrRand[i]);
+		}
+	}
+	printf("\n");
+	printf("Unsorted search for max x+y : %d\n", find_maxsum_elements_unsorted(arrRand, SIZE));
+	printf("--------------------------\n");
+	
 	// Mod elemani bulan fonksiyon testi
 	int arrMode[] = {3,4,6,1,3,4,3,1,3,6};
+	for(i = 0; i < 10; i++) {
+		if (i == 9) {
+			printf("%d", arrMode[i]);
+		}
+		else {
+			printf("%d - ", arrMode[i]);
+		}
+	}
+	printf("\n");
 	printf("Mode of the list: %d\n", find_mode_element(arrMode, 10));
 	//assert(find_mode_element(arrMode,10)==3);
-
+	printf("--------------------------\n");
 	// minimum 5 eleman testi
 	int arrRes[] = {0,0,0,0,0};
 	int arrEx5[] = {3,4,6,1,8,12,58,0,2,55,88,9,23,5,34,15,19,7,43,10};
