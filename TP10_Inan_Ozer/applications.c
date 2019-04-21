@@ -104,16 +104,17 @@ int find_mode_element(int* arritem,int size){
  */
 void minimum_k_elements(int* arritem,int size,int k,int arrRes[k]){
 	// TODO
-	//Sorting kullanarak: (ama calismiyor neden bilmiyorum)
-/*
+	//Sorting kullanarak:
 	int d;
 	insertion_sort(arritem, size);
 	for (d = 0; d < k; d++) {
 		arrRes[d] = arritem[d];
 	}
-*/
+
 	//Sorting kullanmadan:
-	
+	//Denemeye degmez bence. 5 minimum ve 4 temp
+	//kullanilarak find_maxsum_elements_unsorted
+	//gibi yapilabilir.
 }
 
 /*
@@ -132,10 +133,11 @@ void remove_duplications(int* arritem,int size,int* dest){
 	insertion_sort(arritem, size);
 	while (d < size) {
 		dest[i] = arritem[d];
-		while (arritem[d] == arritem[d+1]) {
+		while ((arritem[d] == arritem[d+1]) && (d < size)) {
 			d++;
 		}
+		d++;
 		i++;
-	}	
+	}
 }
 
