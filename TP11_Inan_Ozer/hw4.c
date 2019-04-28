@@ -71,6 +71,14 @@ void test(SortMethod s) {
  *********/
 int main(int argc, char *argv[]) {
 
+  //Alistirma 4 :
+  /* .o uzantili dosyalar olustu. Bu dosyalar object (nesne?)
+   * dosyalaridir. Compile ederken .c dosyalarindan daha
+   * hizli compile edilirler ancak dogrudan calistirilamazlar.
+   * Makefile dosyasinin koduna gore bu dosyalari "make clean" 
+   * yazarak silebiliriz.  
+  */
+
   /* zaman olcumleri icin */
   struct timeval tstart, tstop;
   /* Sayac degiskenleri */
@@ -80,7 +88,7 @@ int main(int argc, char *argv[]) {
     //{.name = "insertion_sort"           , .fptr = insertion_sort},
     {.name = "selection_sort"           , .fptr = selection_sort},
     {.name = "shell_sort_sedgewick"     , .fptr = shell_sort},
-    //{.name = "shell_sort_ciura"         , .fptr = ciura_shell_sort},
+    {.name = "shell_sort_ciura"         , .fptr = ciura_shell_sort},
     {.name = "quick_sort_libc"          , .fptr = quick_sort_libc},
     {.name = "merge_sort"               , .fptr = merge_sort_wrapper},
     {.name = "quick_sort_gsu"               , .fptr = quick_sort_gsu},
