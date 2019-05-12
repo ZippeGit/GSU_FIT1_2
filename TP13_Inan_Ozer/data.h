@@ -10,7 +10,7 @@
 
 typedef struct Data {
   int* dataX;
-  int* dataY
+  int* dataY;
 } data; 
 
 void insertion_sort(int* arritem,int size);

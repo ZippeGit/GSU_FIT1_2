@@ -1,34 +1,37 @@
 #include"data.h"
 #include <stdlib.h>
 #include <stdio.h>
+#define SIZE 100
 
-int main(int argc, char* argv){
+int main(int argc, char const *argv[]){
   // TODO AListirma 5
 
   data mainData;
-  int X[100];
-  int Y[100];
-  mainData.dataX=X;
-  mainData.dataY=Y;
+  int tmpX[SIZE];
+  int tmpY[SIZE];
+  mainData.dataX=tmpX;
+  mainData.dataY=tmpY;
 
   read_data(argv[1], &mainData);
-  
+
   get_information(mainData.dataX);
+  printf("-----------------\n");
   get_information(mainData.dataY);
+  printf("-----------------\n");
 
   sort_values(&mainData);
 
-  FILE* sortedData = fopen("sorted_data", "w");
+  FILE* sortedData = fopen("sorted_data.txt", "w");
   
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < SIZE; i++) {
     fprintf(sortedData, "%d , %d\n", mainData.dataX[i], mainData.dataY[i]);
   }
   fclose(sortedData);
 
-  double* a; 
-  double* b;
-  find_line(&mainData, a, b);
-  printf("Parameters:\n\t%d\n\t%d", a, b);
+  double a; 
+  double b;
+  find_line(&mainData, &a, &b);
+  printf("Parameters:\n\tm = %.2lf\n\tb = %.2lf\n", a, b);
 
   return 0;
 }
